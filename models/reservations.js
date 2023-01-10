@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const User = require('./users');
 const reservationSchema = new Schema({
     name: {
         type: String,
@@ -17,6 +17,7 @@ const reservationSchema = new Schema({
         type: Date,
         required: true, 
     },
+    user: { type: mongoose.Types.ObjectId, ref: 'User'},
 }, { timestamps: true });
 
 const Reservation = mongoose.model('Reservation', reservationSchema);
