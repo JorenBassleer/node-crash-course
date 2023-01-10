@@ -15,8 +15,10 @@ const reservationSchema = new Schema({
     },
     end: {
         type: Date,
-        required: true,
+        required: true, 
     },
 }, { timestamps: true });
 
-const Reservation = mongoose.model('Reservation');
+const Reservation = mongoose.model('Reservation', reservationSchema);
+
+module.exports = Reservation;
