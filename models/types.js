@@ -6,17 +6,6 @@ const typesSchema = new Schema({
         type: String,
         required: true,
     },
-    details: {
-        type: String,
-    },
-    start: {
-        type: Date,
-        required: true,
-    },
-    end: {
-        type: Date,
-        required: true, 
-    },
 }, { timestamps: true });
 
 const Types = mongoose.model('Types', typesSchema);
