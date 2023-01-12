@@ -23,4 +23,5 @@ router.get('/:id', (req, res) => {
         res.json(appliance);
     }).catch((error) => console.log('error', error));
 });
+
 module.exports = router;
