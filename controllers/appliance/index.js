@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const Appliance = require('../../models/appliance').default;
+const Appliance = require('../../models/appliance');
 
 const router = Router();
 
@@ -24,5 +24,22 @@ router.get('/:id', (req, res) => {
     res.json(appliance);
   }).catch((error) => console.log('error', error));
 });
-
+// Delete
+router.delete('/delete/:id', (req, res) => {
+  const deletedAppliance = Appliance.deleteOne({ _id: req.params.id });
+  deletedAppliance.then(() => {
+    res.json(200);
+  });
+});
+// Update
+router.put('/:id', (req, res) => {
+  // Add validation
+  const updatedAppliance = Appliance.updateOne({
+    _id: req.params.id,
+    $set: req.body,
+  });
+  updatedAppliance.then((appliance) => {
+    res.json(appliance);
+  });
+});
 module.exports = router;
