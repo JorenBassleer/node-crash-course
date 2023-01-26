@@ -3,13 +3,10 @@ const Brand = require('../../models/brand');
 
 const router = Router();
 // Get all
-router.get('/', (req, res) => {
-  const allBrands = Brand.find({});
-
-  allBrands.then((brands) => {
-    res.json(brands);
-  }).catch((error) => console.log('error', error));
-});
+const getAllBrands = async () => {
+  const allBrands = await Brand.find({});
+  return allBrands;
+};
 
 // Create new brand
 router.post('/', (req, res) => {
@@ -42,4 +39,7 @@ router.put('/:id', (req, res) => {
     res.json(brand);
   });
 });
-export default router;
+
+module.exports = {
+  getAllBrands,
+};
