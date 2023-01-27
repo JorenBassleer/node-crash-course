@@ -42,4 +42,5 @@ router.put('/:id', (req, res) => {
     res.json(type);
   });
 });
-export default router;
+
+module.exports = router;

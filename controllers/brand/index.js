@@ -39,5 +39,4 @@ router.put('/:id', (req, res) => {
     res.json(brand);
   });
 });
-
 module.exports = router;

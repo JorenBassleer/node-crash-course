@@ -21,7 +21,7 @@ const updateAppliance = async (id, appliance) => {
   return updatedAppliance;
 };
 // TODO: Add soft delete
-const deleteAppliance = async (id) => {
+const deleteApplianceById = async (id) => {
   const deletedAppliance = await Appliance.delete({ _id: id });
   return deletedAppliance;
 };
@@ -29,6 +29,6 @@ module.exports = {
   getAllAppliances,
   findApplianceById,
   createAppliance,
-  deleteAppliance,
+  deleteApplianceById,
   updateAppliance,
 };

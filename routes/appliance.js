@@ -7,6 +7,7 @@ module.exports = (app) => {
   app.use('/appliance', router);
   // Get all
   router.get('/', async (req, res) => {
+    console.log('insqide get');
     try {
       const applianceRecords = await applianceController.getAllAppliances();
       return res.status(200).json(applianceRecords);
