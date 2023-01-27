@@ -40,6 +40,4 @@ router.put('/:id', (req, res) => {
   });
 });
 
-module.exports = {
-  getAllBrands,
-};
+module.exports = router;
