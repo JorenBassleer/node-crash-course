@@ -4,7 +4,7 @@ const getAllAppliances = async () => {
   const allAppliances = await Appliance.find({});
   return allAppliances;
 };
-const findAppliance = async (id) => {
+const findApplianceById = async (id) => {
   const foundAppliance = await Appliance.find({ _id: id });
   if (!foundAppliance) throw new Error('No appliance with that id');
   return foundAppliance;
@@ -20,13 +20,14 @@ const updateAppliance = async (id, appliance) => {
   });
   return updatedAppliance;
 };
+// TODO: Add soft delete
 const deleteAppliance = async (id) => {
   const deletedAppliance = await Appliance.delete({ _id: id });
   return deletedAppliance;
 };
 module.exports = {
   getAllAppliances,
-  findAppliance,
+  findApplianceById,
   createAppliance,
   deleteAppliance,
   updateAppliance,
