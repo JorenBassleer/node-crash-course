@@ -1,45 +1,33 @@
-const { Router } = require('express');
 const Appliance = require('../../models/appliance');
 
-const router = Router();
-
-router.get('/', (req, res) => {
-  const allAppliances = Appliance.find({});
-
-  allAppliances.then((appliances) => {
-    res.json(appliances);
-  }).catch((error) => console.log('error', error));
-});
-// Get all
-router.post('/', (req, res) => {
-  const newAppliance = Appliance.create(req.body);
-  newAppliance.then((appliance) => {
-    res.json(appliance);
-  }).catch((error) => console.log('error', error));
-});
-// Find
-router.get('/:id', (req, res) => {
-  const foundAppliance = Appliance.find({ _id: req.params.id });
-  foundAppliance.then((appliance) => {
-    res.json(appliance);
-  }).catch((error) => console.log('error', error));
-});
-// Delete
-router.delete('/delete/:id', (req, res) => {
-  const deletedAppliance = Appliance.deleteOne({ _id: req.params.id });
-  deletedAppliance.then(() => {
-    res.json(200);
+const getAllAppliances = async () => {
+  const allAppliances = await Appliance.find({});
+  return allAppliances;
+};
+const findAppliance = async (id) => {
+  const foundAppliance = await Appliance.find({ _id: id });
+  if (!foundAppliance) throw new Error('No appliance with that id');
+  return foundAppliance;
+};
+const createAppliance = async (appliance) => {
+  const newAppliance = await Appliance.create(appliance);
+  return newAppliance;
+};
+const updateAppliance = async (id, appliance) => {
+  const updatedAppliance = await Appliance.updateOne({
+    _id: id,
+    $set: appliance,
   });
-});
-// Update
-router.put('/:id', (req, res) => {
-  // Add validation
-  const updatedAppliance = Appliance.updateOne({
-    _id: req.params.id,
-    $set: req.body,
-  });
-  updatedAppliance.then((appliance) => {
-    res.json(appliance);
-  });
-});
-module.exports = router;
+  return updatedAppliance;
+};
+const deleteAppliance = async (id) => {
+  const deletedAppliance = await Appliance.delete({ _id: id });
+  return deletedAppliance;
+};
+module.exports = {
+  getAllAppliances,
+  findAppliance,
+  createAppliance,
+  deleteAppliance,
+  updateAppliance,
+};
