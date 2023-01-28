@@ -5,16 +5,12 @@ const applianceController = require('../controllers/appliance');
 
 module.exports = (app) => {
   app.use('/appliance', router);
-  console.log('herer 2', router);
   // Get all
   router.get('/', async (req, res, next) => {
-    console.log('inside here 2');
     try {
       const applianceRecords = await applianceController.getAllAppliances();
-      console.log('inside here 3');
       return res.status(200).json(applianceRecords);
     } catch (error) {
-      console.log('error: ', error);
       return next(error);
     }
   });

@@ -14,7 +14,6 @@ app.use(express.urlencoded({
   extended: true,
 }));
 app.use('/', routes);
-const router = express.Router();
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     app.listen(PORT);
