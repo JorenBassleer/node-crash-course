@@ -13,9 +13,10 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: true,
 }));
-
 app.use('/', routes);
-
+const router = express.Router();
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => app.listen(PORT))
+  .then(() => {
+    app.listen(PORT);
+  })
   .catch(() => console.log('err'));

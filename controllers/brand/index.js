@@ -1,42 +1,34 @@
-const { Router } = require('express');
 const Brand = require('../../models/brand');
 
-const router = Router();
-// Get all
 const getAllBrands = async () => {
   const allBrands = await Brand.find({});
   return allBrands;
 };
+const findBrandById = async (id) => {
+  const foundBrand = await Brand.find({ _id: id });
+  if (!foundBrand) throw new Error('No brand with that id');
+  return foundBrand;
+};
+const createBrand = async (brand) => {
+  const newBrand = await Brand.create(brand).save();
+  return newBrand;
+};
+const updateBrand = async (id, brand) => {
+  const updatedBrand = await Brand.updateOne({
+    _id: id,
+    $set: brand,
+  });
+  return updatedBrand;
+};
+const deleteBrandById = async (id) => {
+  const deletedBrand = await Brand.delete({ _id: id });
+  return deletedBrand;
+};
 
-// Create new brand
-router.post('/', (req, res) => {
-  // Insert validation here
-  const newBrand = Brand.create(req.body);
-  newBrand.then((brand) => {
-    res.json(brand);
-  }).catch((error) => console.log('error', error));
-});
-// Find one brand
-router.get('/:id', (req, res) => {
-  const foundBrand = Brand.find({ _id: req.params.id });
-  foundBrand.then((brand) => {
-    res.json(brand);
-  }).catch((error) => console.log('error', error));
-});
-// Delete one brand
-router.delete('/delete/:id', (req, res) => {
-  const deletedBrand = Brand.deleteOne({ _id: req.params.id });
-  deletedBrand.then((brand) => {
-    res.json(brand);
-  }).catch((error) => console.log('error', error));
-});
-router.put('/:id', (req, res) => {
-  const updatedBrand = Brand.updateOne({
-    _id: req.params.id,
-    $set: req.body,
-  });
-  updatedBrand.then((brand) => {
-    res.json(brand);
-  });
-});
-module.exports = router;
+module.exports = {
+  getAllBrands,
+  findBrandById,
+  createBrand,
+  updateBrand,
+  deleteBrandById,
+};
