@@ -9,6 +9,14 @@ const applianceSchema = new Schema({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
+  brand: {
+    type: String,
+    required: true,
+  },
 }, { timestamps: true });
 
 const Appliance = model('Appliance', applianceSchema);

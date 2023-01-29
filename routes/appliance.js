@@ -5,8 +5,10 @@ const applianceController = require('../controllers/appliance');
 
 module.exports = (app) => {
   app.use('/appliance', router);
+  console.log('inside appliance routes');
   // Get all
   router.get('/', async (req, res) => {
+    console.log('inside router get');
     try {
       const applianceRecords = await applianceController.getAllAppliances();
       return res.status(200).json(applianceRecords);

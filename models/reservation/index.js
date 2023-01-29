@@ -1,6 +1,4 @@
-const { Schema, model, mongoose } = require('mongoose');
-// eslint-disable-next-line no-unused-vars
-const User = require('../user');
+const { Schema, model } = require('mongoose');
 
 const reservationSchema = new Schema({
   name: {
@@ -18,7 +16,14 @@ const reservationSchema = new Schema({
     type: Date,
     required: true,
   },
-  user: { type: mongoose.Types.ObjectId, ref: 'User' },
+  user: {
+    type: String,
+    required: true,
+  },
+  appliances: {
+    type: Array,
+    required: true,
+  },
 }, { timestamps: true });
 
 const Reservation = model('Reservation', reservationSchema);
