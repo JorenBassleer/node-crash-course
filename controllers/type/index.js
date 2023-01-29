@@ -1,46 +1,35 @@
-const { Router } = require('express');
 const Type = require('../../models/type');
 
-const router = Router();
 // Get all
-router.get('/', (req, res) => {
-  const allTypes = Type.find({});
-
-  allTypes.then((types) => {
-    res.json(types);
-  }).catch((error) => console.log('error', error));
-});
-
-// Create new brand
-router.post('/', (req, res) => {
-  // Insert validation here
-  const newType = Type.create(req.body);
-  newType.then((type) => {
-    res.json(type);
-  }).catch((error) => console.log('error', error));
-});
-// Find one type
-router.get('/:id', (req, res) => {
-  const foundType = Type.find({ _id: req.params.id });
-  foundType.then((type) => {
-    res.json(type);
-  }).catch((error) => console.log('error', error));
-});
-// Delete one type
-router.delete('/delete/:id', (req, res) => {
-  const deletedType = Type.deleteOne({ _id: req.params.id });
-  deletedType.then((type) => {
-    res.json(type);
-  }).catch((error) => console.log('error', error));
-});
-router.put('/:id', (req, res) => {
-  const updatedType = Type.updateOne({
-    _id: req.params.id,
-    $set: req.body,
+const getAllTypes = async () => {
+  const allTypes = await Type.find({});
+  return allTypes;
+};
+const findTypeById = async (id) => {
+  const foundType = await Type.find({ _id: id });
+  if (!foundType) throw new Error('No type found with that id');
+  return foundType;
+};
+const createType = async (type) => {
+  const createdType = await (await Type.create(type)).save();
+  return createdType;
+};
+const updateType = async (id, type) => {
+  const updatedType = await Type.updateOne({
+    _id: id,
+    $set: type,
   });
-  updatedType.then((type) => {
-    res.json(type);
-  });
-});
+  return updatedType;
+};
+const deleteTypeById = async (id) => {
+  const deletedType = await Type.deleteOne({ _id: id });
+  return deletedType;
+};
 
-module.exports = router;
+module.exports = {
+  getAllTypes,
+  findTypeById,
+  createType,
+  updateType,
+  deleteTypeById,
+};

@@ -6,12 +6,12 @@ const applianceController = require('../controllers/appliance');
 module.exports = (app) => {
   app.use('/appliance', router);
   // Get all
-  router.get('/', async (req, res, next) => {
+  router.get('/', async (req, res) => {
     try {
       const applianceRecords = await applianceController.getAllAppliances();
       return res.status(200).json(applianceRecords);
     } catch (error) {
-      return next(error);
+      return res.status(500).json(error);
     }
   });
   // Create
