@@ -10,7 +10,7 @@ const findApplianceById = async (id) => {
   return foundAppliance;
 };
 const createAppliance = async (appliance) => {
-  const newAppliance = await Appliance.create(appliance).save();
+  const newAppliance = await (await Appliance.create(appliance)).save();
   return newAppliance;
 };
 const updateAppliance = async (id, appliance) => {
@@ -22,7 +22,7 @@ const updateAppliance = async (id, appliance) => {
 };
 // TODO: Add soft delete
 const deleteApplianceById = async (id) => {
-  const deletedAppliance = await Appliance.delete({ _id: id });
+  const deletedAppliance = await Appliance.deleteOne({ _id: id });
   return deletedAppliance;
 };
 

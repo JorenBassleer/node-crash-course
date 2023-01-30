@@ -10,7 +10,7 @@ const findBrandById = async (id) => {
   return foundBrand;
 };
 const createBrand = async (brand) => {
-  const newBrand = await Brand.create(brand).save();
+  const newBrand = await (await Brand.create(brand)).save();
   return newBrand;
 };
 const updateBrand = async (id, brand) => {
@@ -21,7 +21,7 @@ const updateBrand = async (id, brand) => {
   return updatedBrand;
 };
 const deleteBrandById = async (id) => {
-  const deletedBrand = await Brand.delete({ _id: id });
+  const deletedBrand = await Brand.deleteOne({ _id: id });
   return deletedBrand;
 };
 
