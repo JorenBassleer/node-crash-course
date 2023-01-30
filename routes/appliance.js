@@ -5,10 +5,8 @@ const applianceController = require('../controllers/appliance');
 
 module.exports = (app) => {
   app.use('/appliance', router);
-  console.log('inside appliance routes');
   // Get all
   router.get('/', async (req, res) => {
-    console.log('inside router get');
     try {
       const applianceRecords = await applianceController.getAllAppliances();
       return res.status(200).json(applianceRecords);
@@ -20,6 +18,7 @@ module.exports = (app) => {
   router.post('/', async (req, res) => {
     try {
       const createdAppliance = await applianceController.createAppliance(req.body);
+      console.log('createdAppliance: ', createdAppliance);
       return res.status(200).json(createdAppliance);
     } catch (error) {
       return res.status(500).json(error);
