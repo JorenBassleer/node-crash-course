@@ -42,7 +42,6 @@ module.exports = (app) => {
       const deletedType = await typeController.deleteTypeById(req.params.id);
       return res.status(200).json(deletedType);
     } catch (error) {
-      console.log(error);
       return res.status(500).json(error);
     }
   });

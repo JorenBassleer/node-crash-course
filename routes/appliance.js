@@ -37,11 +37,10 @@ module.exports = (app) => {
     try {
       const updatedAppliance = await applianceController.updateApplianceById(
         req.params.id,
-        req.body
+        req.body,
       );
       return res.status(200).json(updatedAppliance);
     } catch (error) {
-      console.log(error);
       return res.status(500).json(error);
     }
   });
