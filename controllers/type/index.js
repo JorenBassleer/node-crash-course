@@ -15,10 +15,10 @@ const createType = async (type) => {
   return createdType;
 };
 const updateType = async (id, type) => {
-  const updatedType = await (Type.updateOne({
-    _id: id,
-    $set: type,
-  }));
+  const updatedType = await Type.updateOne(
+    { _id: id },
+    { $set: type },
+  );
   return updatedType;
 };
 const deleteTypeById = async (id) => {

@@ -14,10 +14,10 @@ const createBrand = async (brand) => {
   return newBrand;
 };
 const updateBrand = async (id, brand) => {
-  const updatedBrand = await Brand.updateOne({
-    _id: id,
-    $set: brand,
-  });
+  const updatedBrand = await Brand.updateOne(
+    { _id: id },
+    { $set: brand },
+  );
   return updatedBrand;
 };
 const deleteBrandById = async (id) => {

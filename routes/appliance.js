@@ -35,10 +35,11 @@ module.exports = (app) => {
   // Update
   router.put('/:id', async (req, res) => {
     try {
+      console.log('body: ', req.body);
       const updatedAppliance = await applianceController.updateAppliance(req.params.id, req.body);
-      console.log('updated Appliance in routes', updatedAppliance);
       return res.status(200).json(updatedAppliance);
     } catch (error) {
+      console.log('errr: ', error);
       return res.status(500).json(error);
     }
   });
