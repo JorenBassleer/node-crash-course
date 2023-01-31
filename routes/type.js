@@ -7,8 +7,8 @@ module.exports = (app) => {
   app.use('/type', router);
   router.get('/', async (req, res) => {
     try {
-      const brandRecords = await typeController.getAllTypes();
-      return res.status(200).json(brandRecords);
+      const typeRecords = await typeController.getAllTypes();
+      return res.status(200).json(typeRecords);
     } catch (error) {
       return res.status(500).json(error);
     }
