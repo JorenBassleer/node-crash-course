@@ -4,6 +4,7 @@ const appliance = require('./appliance');
 const brand = require('./brand');
 const type = require('./type');
 const user = require('./user');
+const reservation = require('./reservation');
 
 module.exports = () => {
   const app = Router();
@@ -11,6 +12,7 @@ module.exports = () => {
   brand(app);
   type(app);
   user(app);
+  reservation(app);
 
   return app;
 };

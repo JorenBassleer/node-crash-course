@@ -24,6 +24,10 @@ const reservationSchema = new Schema({
     type: Array,
     required: true,
   },
+  amounts: {
+    type: Array,
+    required: true,
+  },
 }, { timestamps: true });
 
 const Reservation = model('Reservation', reservationSchema);
