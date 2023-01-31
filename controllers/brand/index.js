@@ -13,10 +13,16 @@ const createBrand = async (brand) => {
   const newBrand = await (await Brand.create(brand)).save();
   return newBrand;
 };
-const updateBrand = async (id, brand) => {
-  const updatedBrand = await Brand.updateOne(
-    { _id: id },
-    { $set: brand },
+const updateBrandById = async (id, brand) => {
+  const updatedBrand = await Brand.findByIdAndUpdate(
+    id,
+    {
+      $set: brand,
+    },
+    {
+      new: true,
+      lean: true,
+    },
   );
   return updatedBrand;
 };
@@ -29,6 +35,6 @@ module.exports = {
   getAllBrands,
   findBrandById,
   createBrand,
-  updateBrand,
+  updateBrandById,
   deleteBrandById,
 };

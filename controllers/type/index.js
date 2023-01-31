@@ -14,10 +14,16 @@ const createType = async (type) => {
   const createdType = await (await Type.create(type)).save();
   return createdType;
 };
-const updateType = async (id, type) => {
-  const updatedType = await Type.updateOne(
-    { _id: id },
-    { $set: type },
+const updateTypeById = async (id, type) => {
+  const updatedType = await Type.findByIdAndUpdate(
+    id,
+    {
+      $set: type,
+    },
+    {
+      lean: true,
+      new: true,
+    },
   );
   return updatedType;
 };
@@ -30,6 +36,6 @@ module.exports = {
   getAllTypes,
   findTypeById,
   createType,
-  updateType,
+  updateTypeById,
   deleteTypeById,
 };

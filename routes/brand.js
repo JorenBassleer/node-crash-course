@@ -31,7 +31,7 @@ module.exports = (app) => {
   });
   router.put('/:id', async (req, res) => {
     try {
-      const updatedBrand = await brandController.updateBrand(req.params.id, req.body);
+      const updatedBrand = await brandController.updateBrandById(req.params.id, req.body);
       return res.status(200).json(updatedBrand);
     } catch (error) {
       return res.status(500).json(error);
@@ -39,7 +39,7 @@ module.exports = (app) => {
   });
   router.delete('/:id', async (req, res) => {
     try {
-      const deletedBrand = await brandController.deleteBrand(req.params.id);
+      const deletedBrand = await brandController.deleteBrandById(req.params.id);
       return res.status(200).json(deletedBrand);
     } catch (error) {
       return res.status(500).json(error);

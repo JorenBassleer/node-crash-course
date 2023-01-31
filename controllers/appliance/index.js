@@ -13,11 +13,17 @@ const createAppliance = async (appliance) => {
   const newAppliance = await (await Appliance.create(appliance)).save();
   return newAppliance;
 };
-const updateAppliance = async (id, appliance) => {
-  const updatedAppliance = await Appliance.updateOne(
-    { _id: id },
+const updateApplianceById = async (id, appliance) => {
+  const updatedAppliance = await Appliance.findByIdAndUpdate(
+    id,
     { $set: appliance },
+    // eslint-disable-next-line comma-dangle
+    {
+      lean: true,
+      new: true,
+    },
   );
+
   return updatedAppliance;
 };
 // TODO: Add soft delete
@@ -30,6 +36,6 @@ module.exports = {
   getAllAppliances,
   findApplianceById,
   createAppliance,
+  updateApplianceById,
   deleteApplianceById,
-  updateAppliance,
 };

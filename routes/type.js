@@ -31,7 +31,7 @@ module.exports = (app) => {
   });
   router.put('/:id', async (req, res) => {
     try {
-      const updatedType = await typeController.updateType(req.params.id, req.body);
+      const updatedType = await typeController.updateTypeById(req.params.id, req.body);
       return res.status(200).json(updatedType);
     } catch (error) {
       return res.status(500).json(error);
@@ -39,9 +39,10 @@ module.exports = (app) => {
   });
   router.delete('/:id', async (req, res) => {
     try {
-      const deletedType = await typeController.deleteType(req.params.id);
+      const deletedType = await typeController.deleteTypeById(req.params.id);
       return res.status(200).json(deletedType);
     } catch (error) {
+      console.log(error);
       return res.status(500).json(error);
     }
   });
