@@ -1,4 +1,5 @@
 const Incident = require('../../models/incident');
+const applianceController = require('../appliance');
 
 const getAllIncidents = async () => {
   const allIncidents = await Incident.find({});

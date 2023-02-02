@@ -5,7 +5,7 @@ const getAllAppliances = async () => {
   return allAppliances;
 };
 const findApplianceById = async (id) => {
-  const foundAppliance = await Appliance.find({ _id: id });
+  const foundAppliance = await Appliance.findById({ _id: id });
   if (!foundAppliance) throw new Error('No appliance with that id');
   return foundAppliance;
 };

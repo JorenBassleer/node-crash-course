@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const incidentController = require('../controllers/incident');
+const applianceController = require('../controllers/appliance');
 
 module.exports = (app) => {
   app.use('/incident', router);
@@ -23,6 +24,8 @@ module.exports = (app) => {
   });
   router.post('/', async (req, res) => {
     try {
+      const appliance = applianceController.findApplianceById(req.body.appliance);
+      if (!appliance) return res.status(500).json({ error: 'No appliance with that ID found' });
       const createdIncident = await incidentController.createIncident(req.body);
       return res.status(200).json(createdIncident);
     } catch (error) {

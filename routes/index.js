@@ -5,6 +5,7 @@ const brand = require('./brand');
 const type = require('./type');
 const user = require('./user');
 const reservation = require('./reservation');
+const incident = require('./incident');
 
 module.exports = () => {
   const app = Router();
@@ -13,6 +14,7 @@ module.exports = () => {
   type(app);
   user(app);
   reservation(app);
+  incident(app);
 
   return app;
 };
