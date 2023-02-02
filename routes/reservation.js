@@ -7,7 +7,7 @@ module.exports = (app) => {
   app.use('/reservation', router);
   router.get('/', async (req, res) => {
     try {
-      const reservationRecords = await reservationController.getAllReservatuib();
+      const reservationRecords = await reservationController.getAllReservations();
       return res.status(200).json(reservationRecords);
     } catch (error) {
       return res.status(500).json(error);
