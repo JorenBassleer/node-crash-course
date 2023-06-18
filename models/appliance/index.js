@@ -17,6 +17,10 @@ const applianceSchema = new Schema({
     type: String,
     required: true,
   },
+  image: {
+    type: String,
+    default: '',
+  },
 }, { timestamps: true });
 
 const Appliance = model('Appliance', applianceSchema);
